@@ -24,9 +24,9 @@
 
             <!-- Chat Header -->
             <div class="chat-header">
-                <img class="contact-thumb" src="./img/avatar_1.jpg" alt="">
+                <img class="contact-thumb" :src="contacts[currentContact].avatar" :alt="contacts[currentContact].name">
                 <div class="contact-info">
-                    <p class="username">Michele</p>
+                    <p class="username">{{contacts[currentContact].name}}</p>
                     <p class="last-access">Last seen at 12:00</p>
                 </div>
                 <div class="header-icons">
@@ -39,28 +39,8 @@
             <!-- Chat Body -->
             <div class="chat-body">
 
-                <div class="sent">
-                    <p class="message-text">Hey</p>
-                    <p class="message-time">12:00</p>
-                </div>
-
-                <div class="sent">
-                    <p class="message-text">Hey buddy</p>
-                    <p class="message-time">12:00</p>
-                </div>
-
-                <div class="received">
-                    <p class="message-text">I'm not your buddy, guy</p>
-                    <p class="message-time">12:00</p>
-                </div>
-
-                <div class="sent">
-                    <p class="message-text">I'm not your guy, friend</p>
-                    <p class="message-time">12:00</p>
-                </div>
-
-                <div class="received">
-                    <p class="message-text">I'm not your friend, pal</p>
+                <div :class="messages.status" v-for="messages in contacts[currentContact].messages">
+                    <p class="message-text">{{messages.message}}</p>
                     <p class="message-time">12:00</p>
                 </div>
 
@@ -108,7 +88,7 @@
 
                     <ul>
 
-                        <li class="sidebar-contact" v-for="contact in contacts">
+                        <li class="sidebar-contact" v-for="(contact, index) in contacts" @click="selectContact(index)">
                             <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
                             <div class="sidebar-contact-info">
                                 <p class="sidebar-username">{{contact.name}}</p>

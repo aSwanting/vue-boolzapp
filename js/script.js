@@ -5,12 +5,17 @@ createApp({
     // Vue Data
     data() {
         return {
-            contacts
+            contacts,
+            currentContact: 0,
         }
     },
 
     // Vue Methods
     methods: {
+
+        selectContact(index) {
+            this.currentContact = index
+        }
 
     },
 
