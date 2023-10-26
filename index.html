@@ -8,15 +8,106 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
     <div id="app">
-        <div class="app-background">
-            <div class="app-wrapper">
+
+        <div class="app-wrapper">
+
+
+            <!-- CHAT SECTION -->
+            <div class="chat-header">
+                <img class="contact-thumb" src="./img/avatar_1.jpg" alt="">
+                <div class="contact-info">
+                    <p class="username">Michele</p>
+                    <p class="last-access">Last seen at 12:00</p>
+                </div>
+                <div class="header-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-paperclip"></i>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
             </div>
+            <div class="chat-body"></div>
+            <div class="chat-toolbar">
+                <span><i class="fa-regular fa-face-flushed"></i></span>
+                <input type="text" placeholder="Type a message">
+                <span><i class="fa-solid fa-microphone"></i></span>
+            </div>
+
+
+            <!-- SIDEBAR SECTION -->
+            <div class="sidebar-header">
+                <img class="contact-thumb" src="./img/avatar_io.jpg" alt="">
+                <p class="username">Sofia</p>
+                <div class="header-icons">
+                    <i class="fa-solid fa-circle-notch"></i>
+                    <i class="fa-solid fa-message"></i>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+            </div>
+
+            <div class="sidebar-body">
+
+                <div class="sidebar-notification-banner">
+                    <div class="bell-icon"><i class="fa-solid fa-bell-slash"></i></div>
+                    <div>
+                        <p>Background Sync</p>
+                        <a href="#">Turn on</a>
+                    </div>
+
+                </div>
+
+                <div class="sidebar-search">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" placeholder="Search or start a new chat">
+                </div>
+
+                <div class="sidebar-contacts">
+
+                    <ul>
+
+                        <li class="sidebar-contact">
+                            <img class="sidebar-contact-thumb" src="./img/avatar_1.jpg" alt="">
+                            <div class="sidebar-contact-info">
+                                <p class="sidebar-username">Michele</p>
+                                <p class="sidebar-message">Last message</p>
+                            </div>
+                            <p class="sidebar-message-time">12:00</p>
+                        </li>
+
+                        <li class="sidebar-contact">
+                            <img class="sidebar-contact-thumb" src="./img/avatar_2.jpg" alt="">
+                            <div class="sidebar-contact-info">
+                                <p class="sidebar-username">Gabriel</p>
+                                <p class="sidebar-message">Last message</p>
+                            </div>
+                            <p class="sidebar-message-time">12:00</p>
+                        </li>
+
+                        <li class="sidebar-contact">
+                            <img class="sidebar-contact-thumb" src="./img/avatar_3.jpg" alt="">
+                            <div class="sidebar-contact-info">
+                                <p class="sidebar-username">Francesco</p>
+                                <p class="sidebar-message">Last message</p>
+                            </div>
+                            <p class="sidebar-message-time">12:00</p>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
         </div>
+
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

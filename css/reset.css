@@ -9,7 +9,24 @@ img {
     display: block;
 }
 
-ul, ol, menu {
+ul,
+ol,
+menu {
     list-style: none;
 }
 
+
+button,
+input {
+    border: none;
+    background-color: white;
+    border-radius: 0;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
+a {
+    color: currentColor;
+}
