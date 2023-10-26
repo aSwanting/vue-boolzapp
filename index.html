@@ -41,7 +41,7 @@
 
                 <div :class="messages.status" v-for="(messages, index) in contacts[currentContact].messages">
                     <p class="message-text">{{messages.message}}</p>
-                    <p class="message-time">{{getTime(index)}}</p>
+                    <p class="message-time">{{getTimeFromArray(index)}}</p>
                 </div>
 
             </div>
@@ -50,7 +50,7 @@
             <div class="chat-toolbar">
                 <span><i class="fa-regular fa-face-flushed"></i></span>
                 <input type="text" placeholder="Type a message" v-model="newMessage"
-                    @keydown.enter="sendMessage(newMessage),receiveMessage()">
+                    @keydown.enter="sendMessage(newMessage), receiveMessage()">
                 <span><i class="fa-solid fa-microphone"></i></span>
             </div>
 

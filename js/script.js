@@ -8,6 +8,7 @@ createApp({
             contacts,
             currentContact: 0,
             newMessage: "",
+            messageSent: false,
         }
     },
 
@@ -20,6 +21,8 @@ createApp({
 
         sendMessage() {
 
+            console.log(new Date())
+
             // If valid, push to array
             if (this.newMessage) {
 
@@ -28,9 +31,10 @@ createApp({
                     message: this.newMessage,
                     status: 'sent'
                 })
-
+                this.messageSent = true
                 this.newMessage = ""
             }
+
         },
 
         receiveMessage() {
@@ -44,15 +48,22 @@ createApp({
                 "I'm hungry"
             ]
 
-            const n = Math.floor(Math.random() * returnMessage.length)
+            if (this.messageSent) {
 
-            setTimeout(() => {
-                this.contacts[this.currentContact].messages.push({
-                    date: "...",
-                    message: returnMessage[n],
-                    status: 'received'
-                })
-            }, 1000)
+                const n = Math.floor(Math.random() * returnMessage.length)
+
+                setTimeout(() => {
+                    this.contacts[this.currentContact].messages.push({
+                        date: "...",
+                        message: returnMessage[n],
+                        status: 'received'
+                    })
+                }, 1000)
+
+                this.messageSent = false
+
+            }
+
 
         },
 
@@ -64,7 +75,7 @@ createApp({
 
         },
 
-        getTime(index) {
+        getTimeFromArray(index) {
 
             const convertedDate = this.convertDate(this.contacts[this.currentContact].messages[index].date)
             const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
@@ -108,6 +119,9 @@ createApp({
 
     // Vue Lifecycle
     mounted() {
+
         console.log("It's Alive!")
+
     }
+
 }).mount("#app")
