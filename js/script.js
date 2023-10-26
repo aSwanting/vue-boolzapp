@@ -21,13 +21,11 @@ createApp({
 
         sendMessage() {
 
-            console.log(new Date())
-
             // If valid, push to array
             if (this.newMessage) {
 
                 this.contacts[this.currentContact].messages.push({
-                    date: "...",
+                    date: (new Date().toLocaleString()),
                     message: this.newMessage,
                     status: 'sent'
                 })
@@ -54,7 +52,7 @@ createApp({
 
                 setTimeout(() => {
                     this.contacts[this.currentContact].messages.push({
-                        date: "...",
+                        date: (new Date().toLocaleString()),
                         message: returnMessage[n],
                         status: 'received'
                     })
@@ -75,6 +73,12 @@ createApp({
 
         },
 
+        getCurrentTime() {
+
+            const currentTime = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            return currentTime
+        },
+
         getTimeFromArray(index) {
 
             const convertedDate = this.convertDate(this.contacts[this.currentContact].messages[index].date)
@@ -83,7 +87,7 @@ createApp({
 
         },
 
-        getLastMessage(index) {
+        getReceivedMessages(index) {
 
             const messages = this.contacts[index].messages
             let receivedMessages = []
@@ -100,7 +104,7 @@ createApp({
 
         printLastMessage(index) {
 
-            const receivedMessages = this.getLastMessage(index)
+            const receivedMessages = this.getReceivedMessages(index)
             const lastMessage = receivedMessages[receivedMessages.length - 1].message
             return lastMessage
 
@@ -108,7 +112,7 @@ createApp({
 
         printLastMessageTime(index) {
 
-            const receivedMessages = this.getLastMessage(index)
+            const receivedMessages = this.getReceivedMessages(index)
             const convertedDate = this.convertDate(receivedMessages[receivedMessages.length - 1].date)
             const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
             return time
