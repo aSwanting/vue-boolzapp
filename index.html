@@ -27,7 +27,7 @@
                 <img class="contact-thumb" :src="contacts[currentContact].avatar" :alt="contacts[currentContact].name">
                 <div class="contact-info">
                     <p class="username">{{contacts[currentContact].name}}</p>
-                    <p class="last-access">Last seen at 12:00</p>
+                    <p class="last-access">Last seen at {{printLastMessageTime(currentContact)}}</p>
                 </div>
                 <div class="header-icons">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -39,9 +39,9 @@
             <!-- Chat Body -->
             <div class="chat-body">
 
-                <div :class="messages.status" v-for="messages in contacts[currentContact].messages">
+                <div :class="messages.status" v-for="(messages, index) in contacts[currentContact].messages">
                     <p class="message-text">{{messages.message}}</p>
-                    <p class="message-time">12:00</p>
+                    <p class="message-time">{{getTime(index)}}</p>
                 </div>
 
             </div>
@@ -93,9 +93,9 @@
                             <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
                             <div class="sidebar-contact-info">
                                 <p class="sidebar-username">{{contact.name}}</p>
-                                <p class="sidebar-message">Last message</p>
+                                <p class="sidebar-message">{{printLastMessage(index)}}</p>
                             </div>
-                            <p class="sidebar-message-time">12:00</p>
+                            <p class="sidebar-message-time">{{printLastMessageTime(index)}}</p>
                         </li>
 
 

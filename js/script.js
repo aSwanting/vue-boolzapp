@@ -8,6 +8,7 @@ createApp({
             contacts,
             currentContact: 0,
             newMessage: "",
+            receivedMessages: []
         }
     },
 
@@ -53,6 +54,54 @@ createApp({
                     status: 'received'
                 })
             }, 1000)
+
+        },
+
+        convertDate(date) {
+
+            const splitDate = date.split("/")
+            const convertedDate = `${splitDate[1]}/${splitDate[0]}/${splitDate[2]}`
+            return convertedDate
+
+        },
+
+        getTime(index) {
+
+            const convertedDate = this.convertDate(this.contacts[this.currentContact].messages[index].date)
+            const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            return time
+
+        },
+
+        getLastMessage(index) {
+
+            const messages = this.contacts[index].messages
+            let receivedMessages = []
+
+            messages.forEach(message => {
+                if (message.status === "received") {
+                    receivedMessages.push(message)
+                }
+            })
+
+            return receivedMessages
+
+        },
+
+        printLastMessage(index) {
+
+            const receivedMessages = this.getLastMessage(index)
+            const lastMessage = receivedMessages[receivedMessages.length - 1].message
+            return lastMessage
+
+        },
+
+        printLastMessageTime(index) {
+
+            const receivedMessages = this.getLastMessage(index)
+            const convertedDate = this.convertDate(receivedMessages[receivedMessages.length - 1].date)
+            const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            return time
 
         },
 
