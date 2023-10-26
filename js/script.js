@@ -5,7 +5,7 @@ createApp({
     // Vue Data
     data() {
         return {
-
+            contacts
         }
     },
 
