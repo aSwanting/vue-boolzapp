@@ -109,7 +109,7 @@
                     <ul>
 
                         <li class="sidebar-contact" v-for="contact in contacts">
-                            <img class="sidebar-contact-thumb" :src="contact.avatar" alt="">
+                            <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
                             <div class="sidebar-contact-info">
                                 <p class="sidebar-username">{{contact.name}}</p>
                                 <p class="sidebar-message">Last message</p>
