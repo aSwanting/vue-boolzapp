@@ -119,12 +119,13 @@ html {
     flex-direction: column;
     padding: 50px;
     gap: 14px;
+    overflow: auto;
 
 }
 
 .message-text {
     color: rgb(97, 97, 97);
-    font-size: 16px;
+    word-break: break-all;
 }
 
 .message-time {
@@ -261,4 +262,15 @@ html {
     align-self: flex-start;
     font-size: 12px;
     color: rgb(177, 177, 177);
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 6px
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #817c7c70;
 }

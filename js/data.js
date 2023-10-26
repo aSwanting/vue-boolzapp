@@ -180,7 +180,8 @@ const randomResponses = [
     "Thanks for your input!",
     "May the Force be with you!",
     "I've got a bad feeling about this.",
-    "Understand, I do",
+    "Understand, I do.",
     "Thanks for letting me know!",
-    "That makes sense young padawan"
+    "That makes sense young padawan.",
+    "(╯°□°）╯︵ ┻━┻"
   ]
