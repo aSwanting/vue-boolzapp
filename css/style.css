@@ -42,6 +42,9 @@ html {
 .sidebar-body {
     grid-area: sidebar-body;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .chat-header {
@@ -228,6 +231,10 @@ html {
 .contact-thumb {
     width: 60px;
     border-radius: 50%;
+}
+
+.sidebar-contacts {
+    overflow: auto;
 }
 
 .sidebar-contact {

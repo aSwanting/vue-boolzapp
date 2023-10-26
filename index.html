@@ -85,27 +85,18 @@
                     <input type="text" placeholder="Search or start a new chat">
                 </div>
 
-                <div class="sidebar-contacts">
-
-                    <ul>
-
-                        <li class="sidebar-contact" v-for="(contact, index) in contacts" @click="selectContact(index)">
-                            <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
-                            <div class="sidebar-contact-info">
-                                <p class="sidebar-username">{{contact.name}}</p>
-                                <p class="sidebar-message">{{printLastMessage(index)}}</p>
-                            </div>
-                            <p class="sidebar-message-time">{{printLastMessageTime(index)}}</p>
-                        </li>
-
-
-
-                    </ul>
-
-                </div>
+                <ul class="sidebar-contacts">
+                    <li class="sidebar-contact" v-for="(contact, index) in contacts" @click="selectContact(index)">
+                        <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
+                        <div class="sidebar-contact-info">
+                            <p class="sidebar-username">{{contact.name}}</p>
+                            <p class="sidebar-message">{{printLastMessage(index)}}</p>
+                        </div>
+                        <p class="sidebar-message-time">{{printLastMessageTime(index)}}</p>
+                    </li>
+                </ul>
 
             </div>
-
 
         </div>
 
