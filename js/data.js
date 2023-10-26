@@ -161,3 +161,26 @@ const contacts = [
         ],
     }
 ]
+
+const randomResponses = [
+    "Sure thing!",
+    "Absolutely!",
+    "Got it, thanks!",
+    "No problem!",
+    "Sounds good!",
+    "Thanks a lot!",
+    "Certainly!",
+    "I see, thanks!",
+    "I appreciate your help!",
+    "Noted, thanks!",
+    "Okay, thanks!",
+    "I understand, thanks!",
+    "Alright, thanks!",
+    "Thanks for the update!",
+    "Thanks for your input!",
+    "May the Force be with you!",
+    "I've got a bad feeling about this.",
+    "Sure, I understand, like the Force!",
+    "Thanks for letting me know!",
+    "That makes sense, just like the Force's balance!"
+  ]

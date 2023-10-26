@@ -9,6 +9,7 @@ createApp({
             currentContact: 0,
             newMessage: "",
             messageSent: false,
+            randomResponses
         }
     },
 
@@ -37,23 +38,14 @@ createApp({
 
         receiveMessage() {
 
-            const returnMessage = [
-                "Ok!",
-                "Sounds good!",
-                "Not so sure..",
-                "You tell me!",
-                "Haha!",
-                "I'm hungry"
-            ]
+             if (this.messageSent) {
 
-            if (this.messageSent) {
-
-                const n = Math.floor(Math.random() * returnMessage.length)
+                const responseIndex = Math.floor(Math.random() * this.randomResponses.length)
 
                 setTimeout(() => {
                     this.contacts[this.currentContact].messages.push({
                         date: (new Date().toLocaleString()),
-                        message: returnMessage[n],
+                        message: this.randomResponses[responseIndex],
                         status: 'received'
                     })
                 }, 1000)
