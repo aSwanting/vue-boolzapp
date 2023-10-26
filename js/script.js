@@ -8,7 +8,6 @@ createApp({
             contacts,
             currentContact: 0,
             newMessage: "",
-            receivedMessages: []
         }
     },
 
