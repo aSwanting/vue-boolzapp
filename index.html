@@ -49,7 +49,8 @@
             <!-- Chat Toolbar -->
             <div class="chat-toolbar">
                 <span><i class="fa-regular fa-face-flushed"></i></span>
-                <input type="text" placeholder="Type a message">
+                <input type="text" placeholder="Type a message" v-model="newMessage"
+                    @keydown.enter="sendMessage(newMessage),receiveMessage()">
                 <span><i class="fa-solid fa-microphone"></i></span>
             </div>
 
@@ -97,7 +98,7 @@
                             <p class="sidebar-message-time">12:00</p>
                         </li>
 
-  
+
 
                     </ul>
 
