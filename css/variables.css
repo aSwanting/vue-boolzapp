@@ -1,0 +1,16 @@
+:root {
+
+    /* App Background Palette */
+    --bg-header: #009688;
+    --bg-gradient-start: #DCDBD1;
+    --bg-gradient-end: #D2DBDB;
+
+    /* App Body Palette*/
+    --app-header: #EAEAEA;
+    --header-icons: #B1B1B1;
+    --app-toolbar: #F3EEEA;
+    --toolbar-icons: #6B7376;
+    --sidebar-highlight: #E9EBEB;
+    --notification-banner: #8EDAFC;
+
+}

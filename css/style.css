@@ -1,0 +1,28 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#app {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-background {
+    height: 100%;
+
+    background: linear-gradient(var(--bg-header) 0% 10%,
+            var(--bg-gradient-start)10%,
+            var(--bg-gradient-end));
+
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+}
+
+.app-wrapper {    
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: grid;
+}
