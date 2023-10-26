@@ -138,7 +138,7 @@ html {
 
 .sent,
 .received {
-    width: 40%;
+    max-width: 70%;
     padding: 18px;
     border-radius: 8px;
     position: relative;
