@@ -112,7 +112,7 @@ html {
     z-index: 9999;
     border-radius: 8px;
     text-align: center;
-    font-size: 12px;    
+    font-size: 12px;
     flex-direction: column;
     justify-content: space-between;
     background-color: rgb(252, 252, 252);
@@ -141,6 +141,11 @@ html {
 .message-text {
     word-break: break-all;
     padding: 10px;
+}
+
+.message-text.deleted-message {
+    color: var(--header-icons);
+    font-style: italic;
 }
 
 .message-info {

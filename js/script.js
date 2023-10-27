@@ -43,6 +43,12 @@ createApp({
             this.$refs.dropdown.forEach(element => element.classList.remove("active"))
         },
 
+        deleteMessage(index) {
+            const deletedMessage = this.$refs.messageText[index]
+            deletedMessage.innerHTML = `<i class="fa-solid fa-ban"></i> \u00A0 Message deleted`
+            deletedMessage.classList.add("deleted-message")
+        },
+
         sendMessage() {
             // If valid, push to array
             if (this.newMessage) {
