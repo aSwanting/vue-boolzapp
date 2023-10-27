@@ -39,9 +39,13 @@
             <!-- Chat Body -->
             <div class="chat-body">
 
-                <div :class="messages.status" v-for="(messages, index) in contacts[currentContact].messages">
+                <!-- Chat Messages -->
+                <div class="message" :class="messages.status" v-for="(messages, index) in contacts[currentContact].messages">
                     <p class="message-text">{{messages.message}}</p>
-                    <p class="message-time">{{getTimeFromArray(index)}}</p>
+                    <div class="message-info">
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <p class="message-time">{{getTimeFromArray(index)}}</p>
+                    </div>
                 </div>
 
             </div>
@@ -70,7 +74,7 @@
 
             <!-- Sidebar Body -->
             <div class="sidebar-body">
-                
+
                 <!-- Notification Banner -->
                 <div class="sidebar-notification-banner">
                     <div class="bell-icon"><i class="fa-solid fa-bell-slash"></i></div>
