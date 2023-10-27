@@ -12,13 +12,19 @@ createApp({
             randomResponses,
             contactSearched: "",
             currentDropdown: 0,
-            dropDownOpen: false
+
         }
     },
 
     watch: {
         contactSearched() {
-            this.contacts.forEach(contact => !(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase())) ? contact.visible = false : contact.visible = true)
+            // Per posterità
+            // this.contacts.forEach(contact => !(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase())) ? contact.visible = false : contact.visible = true)
+            const lowercaseSearch = this.contactSearched.toLowerCase()
+            this.contacts.forEach(contact => {
+                const lowercaseName = contact.name.toLowerCase()
+                lowercaseName.includes(lowercaseSearch) ? contact.visible = true : contact.visible = false
+            })
         },
     },
 
@@ -30,22 +36,15 @@ createApp({
         },
 
         toggleDropdown(index) {
-
-            if (!this.dropDownOpen) { this.hideDropdown() }
-
-            this.contacts[this.currentContact].messages[index].dropdown
-                = !this.contacts[this.currentContact].messages[index].dropdown
-
+            this.hideDropdown()
+            const currentMessage = this.contacts[this.currentContact].messages[index]
+            currentMessage.dropdown = !currentMessage.dropdown
             this.currentDropdown = index
-            dropDownOpen = true
-
         },
 
         hideDropdown() {
-            if (this.contacts[this.currentContact].messages[this.currentDropdown].dropdown) {
-                this.contacts[this.currentContact].messages[this.currentDropdown].dropdown = false
-                this.dropDownOpen = false
-            }
+            const currentMessage = this.contacts[this.currentContact].messages[this.currentDropdown]
+            if (currentMessage.dropdown) currentMessage.dropdown = false
         },
 
         deleteMessage(index) {

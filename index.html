@@ -57,8 +57,7 @@
                             <p class="message-time">{{getTimeFromArray(index)}}</p>
                         </div>
 
-                        <div class="message-dropdown" ref="dropdown"
-                        v-show="contacts[currentContact].messages[index].dropdown">
+                        <div class="message-dropdown" v-show="contacts[currentContact].messages[index].dropdown">
                             <p>Message Info</p>
                             <p @click="deleteMessage(index)">Delete Message</p>
                         </div>
