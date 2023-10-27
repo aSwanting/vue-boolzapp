@@ -42,9 +42,13 @@
                 <div class="chat-body">
 
                     <!-- Chat Messages -->
-                    <div class="message" :class="messages.status"
+                    <div class="message"
+                        :class="messages.status, {'deleted-message':contacts[currentContact].messages[index].deleted}"
                         v-for="(messages, index) in contacts[currentContact].messages">
-                        <p class="message-text" ref="messageText">{{messages.message}}</p>
+                        <span class="deleted-icon" v-show="contacts[currentContact].messages[index].deleted">
+                            <i class="fa-solid fa-ban"></i>
+                        </span>
+                        <p class="message-text">{{messages.message}}</p>
                         <div class="message-info">
                             <i class="fa-solid fa-chevron-down" @click.stop="showDropdown(index)"></i>
                             <p class="message-time">{{getTimeFromArray(index)}}</p>

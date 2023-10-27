@@ -36,9 +36,8 @@ createApp({
         },
 
         deleteMessage(index) {
-            const deletedMessage = this.$refs.messageText[index]
-            deletedMessage.innerHTML = `<i class="fa-solid fa-ban"></i> \u00A0 Message deleted`
-            deletedMessage.classList.add("deleted-message")
+            this.contacts[this.currentContact].messages[index].message = "Message deleted"
+            this.contacts[this.currentContact].messages[index].deleted = true           
         },
 
         sendMessage() {

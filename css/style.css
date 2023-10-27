@@ -143,9 +143,18 @@ html {
     padding: 10px;
 }
 
-.message-text.deleted-message {
+.deleted-message {
     color: var(--header-icons);
     font-style: italic;
+}
+
+.deleted-icon {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    position: relative;
+    left: 15px;
 }
 
 .message-info {
