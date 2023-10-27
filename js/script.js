@@ -11,6 +11,8 @@ createApp({
             messageSent: false,
             randomResponses,
             contactSearched: "",
+            currentDropdown: 0,
+            dropDownOpen: false
         }
     },
 
@@ -27,17 +29,28 @@ createApp({
             this.currentContact = index
         },
 
-        showDropdown(index) {
-            this.$refs.dropdown[index].classList.toggle("active")
+        toggleDropdown(index) {
+
+            if (!this.dropDownOpen) { this.hideDropdown() }
+
+            this.contacts[this.currentContact].messages[index].dropdown
+                = !this.contacts[this.currentContact].messages[index].dropdown
+
+            this.currentDropdown = index
+            dropDownOpen = true
+
         },
 
         hideDropdown() {
-            this.$refs.dropdown.forEach(element => element.classList.remove("active"))
+            if (this.contacts[this.currentContact].messages[this.currentDropdown].dropdown) {
+                this.contacts[this.currentContact].messages[this.currentDropdown].dropdown = false
+                this.dropDownOpen = false
+            }
         },
 
         deleteMessage(index) {
             this.contacts[this.currentContact].messages[index].message = "Message deleted"
-            this.contacts[this.currentContact].messages[index].deleted = true           
+            this.contacts[this.currentContact].messages[index].deleted = true
         },
 
         sendMessage() {

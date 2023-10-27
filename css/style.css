@@ -116,10 +116,6 @@ html {
     flex-direction: column;
     justify-content: space-between;
     background-color: rgb(252, 252, 252);
-    display: none;
-}
-
-.message-dropdown.active {
     display: flex;
 }
 

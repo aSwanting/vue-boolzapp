@@ -45,18 +45,24 @@
                     <div class="message"
                         :class="messages.status, {'deleted-message':contacts[currentContact].messages[index].deleted}"
                         v-for="(messages, index) in contacts[currentContact].messages">
+
                         <span class="deleted-icon" v-show="contacts[currentContact].messages[index].deleted">
                             <i class="fa-solid fa-ban"></i>
                         </span>
+
                         <p class="message-text">{{messages.message}}</p>
+
                         <div class="message-info">
-                            <i class="fa-solid fa-chevron-down" @click.stop="showDropdown(index)"></i>
+                            <i class="fa-solid fa-chevron-down" @click.stop="toggleDropdown(index)"></i>
                             <p class="message-time">{{getTimeFromArray(index)}}</p>
                         </div>
-                        <div class="message-dropdown" ref="dropdown">
+
+                        <div class="message-dropdown" ref="dropdown"
+                        v-show="contacts[currentContact].messages[index].dropdown">
                             <p>Message Info</p>
                             <p @click="deleteMessage(index)">Delete Message</p>
                         </div>
+
                     </div>
 
                 </div>
