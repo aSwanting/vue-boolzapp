@@ -35,6 +35,14 @@ createApp({
             this.currentContact = index
         },
 
+        showDropdown(index) {
+            this.$refs.dropdown[index].classList.toggle("active")
+        },
+
+        hideDropdown() {
+            this.$refs.dropdown.forEach(element => element.classList.remove("active"))
+        },
+
         sendMessage() {
             // If valid, push to array
             if (this.newMessage) {

@@ -17,95 +17,105 @@
 
     <div id="app">
 
-        <div class="app-wrapper">
+        <div class="app-main" @click="hideDropdown()">
 
+            <div class="app-wrapper">
 
-            <!-- CHAT SECTION -->
+                <!-- CHAT SECTION -->
 
-            <!-- Chat Header -->
-            <div class="chat-header">
-                <img class="contact-thumb" :src="contacts[currentContact].avatar" :alt="contacts[currentContact].name">
-                <div class="contact-info">
-                    <p class="username">{{contacts[currentContact].name}}</p>
-                    <p class="last-access">Last seen at {{printLastMessageTime(currentContact)}}</p>
-                </div>
-                <div class="header-icons">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <i class="fa-solid fa-paperclip"></i>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </div>
-            </div>
-
-            <!-- Chat Body -->
-            <div class="chat-body">
-
-                <!-- Chat Messages -->
-                <div class="message" :class="messages.status" v-for="(messages, index) in contacts[currentContact].messages">
-                    <p class="message-text">{{messages.message}}</p>
-                    <div class="message-info">
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <p class="message-time">{{getTimeFromArray(index)}}</p>
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <img class="contact-thumb" :src="contacts[currentContact].avatar"
+                        :alt="contacts[currentContact].name">
+                    <div class="contact-info">
+                        <p class="username">{{contacts[currentContact].name}}</p>
+                        <p class="last-access">Last seen at {{printLastMessageTime(currentContact)}}</p>
+                    </div>
+                    <div class="header-icons">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-paperclip"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
 
-            </div>
+                <!-- Chat Body -->
+                <div class="chat-body">
 
-            <!-- Chat Toolbar -->
-            <div class="chat-toolbar">
-                <span><i class="fa-regular fa-face-flushed"></i></span>
-                <input type="text" placeholder="Type a message" v-model="newMessage"
-                    @keydown.enter="sendMessage(newMessage), receiveMessage()">
-                <span><i class="fa-solid fa-microphone"></i></span>
-            </div>
-
-
-            <!-- SIDEBAR SECTION -->
-
-            <!-- Sidebar Header -->
-            <div class="sidebar-header">
-                <img class="contact-thumb" src="./img/avatar_io.jpg" alt="">
-                <p class="username">Sofia</p>
-                <div class="header-icons">
-                    <i class="fa-solid fa-circle-notch"></i>
-                    <i class="fa-solid fa-message"></i>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </div>
-            </div>
-
-            <!-- Sidebar Body -->
-            <div class="sidebar-body">
-
-                <!-- Notification Banner -->
-                <div class="sidebar-notification-banner">
-                    <div class="bell-icon"><i class="fa-solid fa-bell-slash"></i></div>
-                    <div>
-                        <p>Background Sync</p>
-                        <a href="#">Turn on</a>
-                    </div>
-                </div>
-
-                <!-- Sidebar Search -->
-                <div class="sidebar-search">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <input type="text" placeholder="Search or start a new chat" v-model="contactSearched">
-                </div>
-
-                <!-- Sidebar Contacts -->
-                <ul class="sidebar-contacts">
-                    <li class="sidebar-contact" v-show="contact.visible" v-for="(contact, index) in contacts"
-                        @click="selectContact(index)">
-                        <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
-                        <div class="sidebar-contact-info">
-                            <p class="sidebar-username">{{contact.name}}</p>
-                            <p class="sidebar-message">{{printLastMessage(index)}}</p>
+                    <!-- Chat Messages -->
+                    <div class="message" :class="messages.status"
+                        v-for="(messages, index) in contacts[currentContact].messages">
+                        <p class="message-text">{{messages.message}}</p>
+                        <div class="message-info">
+                            <i class="fa-solid fa-chevron-down" @click.stop="showDropdown(index)"></i>
+                            <p class="message-time">{{getTimeFromArray(index)}}</p>
                         </div>
-                        <p class="sidebar-message-time">{{printLastMessageTime(index)}}</p>
-                    </li>
-                </ul>
+                        <div class="message-dropdown" ref="dropdown">
+                            <p>Message Info</p>
+                            <p>Delete Message</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Chat Toolbar -->
+                <div class="chat-toolbar">
+                    <span><i class="fa-regular fa-face-flushed"></i></span>
+                    <input type="text" placeholder="Type a message" v-model="newMessage"
+                        @keydown.enter="sendMessage(newMessage), receiveMessage()">
+                    <span><i class="fa-solid fa-microphone"></i></span>
+                </div>
+
+
+                <!-- SIDEBAR SECTION -->
+
+                <!-- Sidebar Header -->
+                <div class="sidebar-header">
+                    <img class="contact-thumb" src="./img/avatar_io.jpg" alt="">
+                    <p class="username">Sofia</p>
+                    <div class="header-icons">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </div>
+
+                <!-- Sidebar Body -->
+                <div class="sidebar-body">
+
+                    <!-- Notification Banner -->
+                    <div class="sidebar-notification-banner">
+                        <div class="bell-icon"><i class="fa-solid fa-bell-slash"></i></div>
+                        <div>
+                            <p>Background Sync</p>
+                            <a href="#">Turn on</a>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Search -->
+                    <div class="sidebar-search">
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" placeholder="Search or start a new chat" v-model="contactSearched">
+                    </div>
+
+                    <!-- Sidebar Contacts -->
+                    <ul class="sidebar-contacts">
+                        <li class="sidebar-contact" v-show="contact.visible" v-for="(contact, index) in contacts"
+                            @click="selectContact(index)">
+                            <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
+                            <div class="sidebar-contact-info">
+                                <p class="sidebar-username">{{contact.name}}</p>
+                                <p class="sidebar-message">{{printLastMessage(index)}}</p>
+                            </div>
+                            <p class="sidebar-message-time">{{printLastMessageTime(index)}}</p>
+                        </li>
+                    </ul>
+
+                </div>
 
             </div>
-
         </div>
+
+
 
     </div>
 
