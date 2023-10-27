@@ -191,13 +191,13 @@ html {
 
 .sidebar-search button,
 .sidebar-search input {
-    border: 1px solid var(--bg-gradient-start);
+    border: 1px solid var(--bg-gradient-end);
     padding: 10px;
-
 }
 
 .sidebar-search button {
     border-radius: 5px 0px 0px 5px;
+    color: var(--grey-text);
 }
 
 .sidebar-search input {

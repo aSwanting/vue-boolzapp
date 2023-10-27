@@ -70,28 +70,26 @@
 
             <!-- Sidebar Body -->
             <div class="sidebar-body">
-
+                
+                <!-- Notification Banner -->
                 <div class="sidebar-notification-banner">
                     <div class="bell-icon"><i class="fa-solid fa-bell-slash"></i></div>
                     <div>
                         <p>Background Sync</p>
                         <a href="#">Turn on</a>
                     </div>
-
                 </div>
 
+                <!-- Sidebar Search -->
                 <div class="sidebar-search">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                     <input type="text" placeholder="Search or start a new chat" v-model="contactSearched">
                 </div>
 
+                <!-- Sidebar Contacts -->
                 <ul class="sidebar-contacts">
-
-                    <li class="sidebar-contact" 
-                    v-show="contact.visible"
-                    v-for="(contact, index) in contacts" 
-                    @click="selectContact(index)">
-
+                    <li class="sidebar-contact" v-show="contact.visible" v-for="(contact, index) in contacts"
+                        @click="selectContact(index)">
                         <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
                         <div class="sidebar-contact-info">
                             <p class="sidebar-username">{{contact.name}}</p>
