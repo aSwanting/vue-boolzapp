@@ -14,6 +14,20 @@ createApp({
         }
     },
 
+    watch: {
+
+        contactSearched() {
+            this.contacts.forEach(contact => {
+                if (!(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase()))) {
+                    contact.visible = false
+                } else {
+                    contact.visible = true
+                }
+            })
+        },
+
+    },
+
     // Vue Methods
     methods: {
 
@@ -112,15 +126,15 @@ createApp({
 
         },
 
-        contactSearch() {
-            this.contacts.forEach(contact => {
-                if (!(contact.name.toLowerCase().includes(this.contactSearched))) {
-                    contact.visible = false
-                } else {
-                    contact.visible = true
-                }
-            })
-        },
+        // contactSearch() {
+        //     this.contacts.forEach(contact => {
+        //         if (!(contact.name.toLowerCase().includes(this.contactSearched))) {
+        //             contact.visible = false
+        //         } else {
+        //             contact.visible = true
+        //         }
+        //     })
+        // },
 
     },
 
