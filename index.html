@@ -82,11 +82,16 @@
 
                 <div class="sidebar-search">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <input type="text" placeholder="Search or start a new chat">
+                    <input type="text" placeholder="Search or start a new chat" v-model="contactSearched" @keyup="contactSearch()">
                 </div>
 
                 <ul class="sidebar-contacts">
-                    <li class="sidebar-contact" v-for="(contact, index) in contacts" @click="selectContact(index)">
+
+                    <li class="sidebar-contact" 
+                    v-show="contact.visible"
+                    v-for="(contact, index) in contacts" 
+                    @click="selectContact(index)">
+
                         <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
                         <div class="sidebar-contact-info">
                             <p class="sidebar-username">{{contact.name}}</p>

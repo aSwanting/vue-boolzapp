@@ -9,7 +9,8 @@ createApp({
             currentContact: 0,
             newMessage: "",
             messageSent: false,
-            randomResponses
+            randomResponses,
+            contactSearched: "",
         }
     },
 
@@ -38,7 +39,7 @@ createApp({
 
         receiveMessage() {
 
-             if (this.messageSent) {
+            if (this.messageSent) {
 
                 const responseIndex = Math.floor(Math.random() * this.randomResponses.length)
 
@@ -109,6 +110,16 @@ createApp({
             const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
             return time
 
+        },
+
+        contactSearch() {
+            this.contacts.forEach(contact => {
+                if (!(contact.name.toLowerCase().includes(this.contactSearched))) {
+                    contact.visible = false
+                } else {
+                    contact.visible = true
+                }
+            })
         },
 
     },
