@@ -15,17 +15,9 @@ createApp({
     },
 
     watch: {
-
         contactSearched() {
-            this.contacts.forEach(contact => {
-                if (!(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase()))) {
-                    contact.visible = false
-                } else {
-                    contact.visible = true
-                }
-            })
+            this.contacts.forEach(contact => !(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase())) ? contact.visible = false : contact.visible = true)
         },
-
     },
 
     // Vue Methods
