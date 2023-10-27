@@ -3,21 +3,16 @@ html {
 }
 
 #app {
-
     background: linear-gradient(var(--bg-header) 0px 150px,
             var(--bg-gradient-start)150px,
             var(--bg-gradient-end));
-
     height: 100vh;
     overflow: hidden;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
-
-/* GRID LAYOUT */
 
 .app-wrapper {
     max-width: 1800px;
@@ -35,48 +30,17 @@ html {
         "sidebar-body chat-toolbar";
 }
 
-.sidebar-header {
-    grid-area: sidebar-header;
-    background-color: var(--app-header);
-}
-
-.sidebar-body {
-    grid-area: sidebar-body;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.chat-header {
-    grid-area: chat-header;
-    background-color: var(--app-header);
-}
-
-.chat-body {
-    grid-area: chat-body;
-    background: url(../img/mine.jpg);
-}
-
-.chat-toolbar {
-    grid-area: chat-toolbar;
-    background-color: var(--app-toolbar);
-}
-
-
-
-/* SECTION STYLES */
-
-
 /* Chat section */
 
 .chat-body,
 .chat-header,
 .chat-toolbar {
-    border-left: 2px solid var(--bg-gradient-start)
+    border-left: 2px solid var(--bg-gradient-start);
 }
 
 .chat-header {
+    grid-area: chat-header;
+    background-color: var(--app-header);
     display: flex;
     align-items: center;
     padding: 20px;
@@ -84,6 +48,8 @@ html {
 }
 
 .chat-toolbar {
+    grid-area: chat-toolbar;
+    background-color: var(--app-toolbar);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,12 +79,14 @@ html {
 }
 
 .last-access {
-    color: grey;
+    color: var(--grey-text);
 }
 
 /* Message Section */
 
 .chat-body {
+    grid-area: chat-body;
+    background: url(../img/mine.jpg);
     display: flex;
     flex-direction: column;
     padding: 50px;
@@ -128,12 +96,11 @@ html {
 }
 
 .message-text {
-    color: rgb(97, 97, 97);
     word-break: break-all;
 }
 
 .message-time {
-    color: rgb(150, 150, 150);
+    color: var(--grey-text);
     position: absolute;
     font-size: 10px;
     right: 5px;
@@ -164,10 +131,20 @@ html {
 /* Sidebar section */
 
 .sidebar-header {
+    grid-area: sidebar-header;
+    background-color: var(--app-header);
     display: flex;
     align-items: center;
     padding: 10px;
     gap: 10px;
+}
+
+.sidebar-body {
+    grid-area: sidebar-body;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .username {
@@ -191,7 +168,7 @@ html {
 
 .sidebar-notification-banner a {
     font-size: 14px;
-    color: rgb(110, 110, 110);
+    color: var(--link-text)
 }
 
 .bell-icon {
@@ -261,15 +238,14 @@ html {
     flex-grow: 1;
 }
 
-.sidebar-message {
+.sidebar-message,
+.sidebar-message-time {
     font-size: 12px;
-    color: rgb(177, 177, 177);
+    color: var(--grey-text)
 }
 
 .sidebar-message-time {
     align-self: flex-start;
-    font-size: 12px;
-    color: rgb(177, 177, 177);
 }
 
 /* Scrollbar */
@@ -280,5 +256,5 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #817c7c70;
+    background-color: #8080803d;
 }

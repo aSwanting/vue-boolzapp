@@ -1,5 +1,4 @@
 :root {
-
     /* App Background Palette */
     --bg-header: #009688;
     --bg-gradient-start: #DCDBD1;
@@ -13,5 +12,6 @@
     --sidebar-highlight: #E9EBEB;
     --notification-banner: #8EDAFC;
     --searchbar-bg: #FAFAFA;
-
+    --grey-text: #a8a8a8;
+    --link-text: #656870;
 }
