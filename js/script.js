@@ -12,6 +12,7 @@ createApp({
             randomResponses,
             contactSearched: "",
             currentDropdown: 0,
+            dropdownOpen: false
 
         }
     },
@@ -42,15 +43,27 @@ createApp({
         },
 
         toggleDropdown(index) {
-            this.hideDropdown()
+
+            if (this.dropdownOpen && this.currentDropdown != index) this.hideDropdown()
+
             const currentMessage = this.contacts[this.currentContact].messages[index]
             currentMessage.dropdown = !currentMessage.dropdown
-            this.currentDropdown = index
+            
+            if (currentMessage.dropdown) {
+                this.dropdownOpen = true
+                this.currentDropdown = index
+            } else {
+                this.dropdownOpen = false
+            }
+
         },
 
         hideDropdown() {
-            const currentMessage = this.contacts[this.currentContact].messages[this.currentDropdown]
-            if (currentMessage.dropdown) currentMessage.dropdown = false
+            if (this.dropdownOpen) {
+                const currentMessage = this.contacts[this.currentContact].messages[this.currentDropdown]
+                if (currentMessage.dropdown) currentMessage.dropdown = false
+                this.dropdownOpen = false
+            }
         },
 
         deleteMessage(index) {
