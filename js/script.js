@@ -60,11 +60,10 @@ createApp({
         },
 
         sendMessage() {
-            // If valid, push to array
             if (this.newMessage) {
 
                 this.contacts[this.currentContact].messages.push({
-                    date: (new Date().toLocaleString()),
+                    date: (new Date().toLocaleString("en-GB")),
                     message: this.newMessage,
                     status: 'sent'
                 })
@@ -78,7 +77,7 @@ createApp({
                 const responseIndex = Math.floor(Math.random() * this.randomResponses.length)
                 setTimeout(() => {
                     this.contacts[this.currentContact].messages.push({
-                        date: (new Date().toLocaleString()),
+                        date: (new Date().toLocaleString("en-GB")),
                         message: this.randomResponses[responseIndex],
                         status: 'received'
                     })
@@ -95,7 +94,7 @@ createApp({
 
         getTimeFromArray(index) {
             const convertedDate = this.convertDate(this.contacts[this.currentContact].messages[index].date)
-            const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })
             return time
         },
 
@@ -119,7 +118,7 @@ createApp({
         printLastMessageTime(index) {
             const receivedMessages = this.getReceivedMessages(index)
             const convertedDate = this.convertDate(receivedMessages[receivedMessages.length - 1].date)
-            const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })
             return time
         },
     },
