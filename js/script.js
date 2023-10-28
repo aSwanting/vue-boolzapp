@@ -20,11 +20,17 @@ createApp({
         contactSearched() {
             // Per posterità
             // this.contacts.forEach(contact => !(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase())) ? contact.visible = false : contact.visible = true)
-            const lowercaseSearch = this.contactSearched.toLowerCase()
-            this.contacts.forEach(contact => {
-                const lowercaseName = contact.name.toLowerCase()
-                lowercaseName.includes(lowercaseSearch) ? contact.visible = true : contact.visible = false
-            })
+
+            const lowercaseSearch = this.contactSearched.toLowerCase().split(' ').join('')
+
+            if (lowercaseSearch) {
+                this.contacts.forEach(contact => {
+
+                    const lowercaseName = contact.name.toLowerCase().split(' ').join('')
+                    lowercaseName.includes(lowercaseSearch) ? contact.visible = true : contact.visible = false
+
+                })
+            }
         },
     },
 
@@ -48,8 +54,9 @@ createApp({
         },
 
         deleteMessage(index) {
-            this.contacts[this.currentContact].messages[index].message = "Message deleted"
-            this.contacts[this.currentContact].messages[index].deleted = true
+            const currentMessage = this.contacts[this.currentContact].messages[index]
+            currentMessage.message = "Message deleted"
+            currentMessage.deleted = true
         },
 
         sendMessage() {
