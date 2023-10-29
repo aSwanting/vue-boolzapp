@@ -48,7 +48,7 @@ createApp({
 
             const currentMessage = this.contacts[this.currentContact].messages[index]
             currentMessage.dropdown = !currentMessage.dropdown
-            
+
             if (currentMessage.dropdown) {
                 this.dropdownOpen = true
                 this.currentDropdown = index
@@ -74,28 +74,36 @@ createApp({
 
         sendMessage() {
             if (this.newMessage) {
-
                 this.contacts[this.currentContact].messages.push({
                     date: (new Date().toLocaleString("en-GB")),
                     message: this.newMessage,
                     status: 'sent'
                 })
+
                 this.messageSent = true
                 this.newMessage = ""
+
+                const chat = this.$refs.chatBody
+                setTimeout(() => chat.scrollTop = chat.offsetHeight, 0)
             }
         },
 
         receiveMessage() {
             if (this.messageSent) {
                 const responseIndex = Math.floor(Math.random() * this.randomResponses.length)
+
                 setTimeout(() => {
                     this.contacts[this.currentContact].messages.push({
                         date: (new Date().toLocaleString("en-GB")),
                         message: this.randomResponses[responseIndex],
                         status: 'received'
                     })
+                    const chat = this.$refs.chatBody
+                    setTimeout(() => chat.scrollTop = chat.offsetHeight, 0)
                 }, 1000)
                 this.messageSent = false
+
+
             }
         },
 
