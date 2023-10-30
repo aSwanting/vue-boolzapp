@@ -19,7 +19,7 @@
 
         <div class="app-main" @click="hideDropdown()">
 
-            <div class="app-wrapper">
+            <div class="app-wrapper" ref="app">
 
                 <!-- CHAT SECTION -->
 
@@ -70,7 +70,7 @@
                 <div class="chat-toolbar">
                     <span><i class="fa-regular fa-face-flushed"></i></span>
                     <input type="text" placeholder="Type a message" v-model="newMessage"
-                        @keydown.enter="sendMessage(newMessage), receiveMessage()">
+                        @keydown.enter="checkMessage()">
                     <span><i class="fa-solid fa-microphone"></i></span>
                 </div>
 
@@ -129,6 +129,7 @@
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/circle.js"></script>
     <script src="./js/data.js"></script>
     <script src="./js/script.js"></script>
 </body>
