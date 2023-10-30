@@ -44,5 +44,5 @@ permette di cancellare il messaggio selezionato
 
 #### Slash Commands
 Added some slash commands that exectute a couple of fun actions:
-- Typing "/circles number" will spawn the chosen number of bouncing circles in the chat area. To clear them type "/clearcircles".
-- Typing "/rotate number" will rotate the main app window by the chosen number of degrees. Rotate by 0 to reset the rotation.
+- Typing "/circles number" (eg. /circles 10) will spawn the chosen number of bouncing circles in the chat area. To clear them type "/clearcircles".
+- Typing "/rotate number"  (eg. /rotate 45) will rotate the main app window by the chosen number of degrees. Rotate by 0 to reset the rotation.

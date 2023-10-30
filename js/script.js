@@ -249,9 +249,9 @@ createApp({
                 // Print a list of possible commands in chat
                 case "/commands":
                     this.receiveMessage("Type the following commands for bonus features")
-                    this.receiveMessage("/circles number")
+                    this.receiveMessage("/circles number (eg. /circles 10)")
                     this.receiveMessage("/clearcircles")
-                    this.receiveMessage("/rotate number")
+                    this.receiveMessage("/rotate number (eg. /rotate 45)")
                     break;
 
                 // Command to spawn animated circles that bounce around the chat window
