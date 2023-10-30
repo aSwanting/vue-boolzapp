@@ -31,7 +31,7 @@
                         <p class="username">{{contacts[currentContact].name}}</p>
                         <p class="last-access">Last seen at {{printLastMessageTime(currentContact)}}</p>
                     </div>
-                    <div class="header-icons">
+                    <div class="header-icons icons">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-paperclip"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -70,10 +70,10 @@
 
                 <!-- Chat Toolbar -->
                 <div class="chat-toolbar">
-                    <span><i class="fa-regular fa-face-flushed"></i></span>
+                    <span class="icons"><i class="fa-regular fa-face-flushed"></i></span>
                     <input type="text" placeholder="Type a message" v-model="newMessage"
                         @keydown.enter="checkUserChatInput()">
-                    <span><i class="fa-solid fa-microphone"></i></span>
+                    <span class="icons"><i class="fa-solid fa-microphone"></i></span>
                 </div>
 
 
@@ -83,7 +83,7 @@
                 <div class="sidebar-header">
                     <img class="contact-thumb" src="./img/avatar_io.jpg" alt="">
                     <p class="username">Sofia</p>
-                    <div class="header-icons">
+                    <div class="header-icons icons">
                         <i class="fa-solid fa-circle-notch"></i>
                         <i class="fa-solid fa-message"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>

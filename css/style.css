@@ -336,6 +336,17 @@ html {
     align-self: flex-start;
 }
 
+/* Icons */
+
+.icons * {
+   cursor: pointer;
+   transition: 200ms all;
+}
+
+.icons *:hover {
+    filter: brightness(50%);
+}
+
 /* Scrollbar */
 
 ::-webkit-scrollbar {
