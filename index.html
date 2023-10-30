@@ -53,7 +53,9 @@
                         <p class="message-text">{{messages.message}}</p>
 
                         <div class="message-info">
-                            <i class="fa-solid fa-chevron-down" @click.stop="toggleDropdown(index)"></i>
+                            <i class="fa-solid fa-chevron-down"
+                            :class="{active:contacts[currentContact].messages[index].dropdown}"
+                            @click.stop="toggleDropdown(index)"></i>
                             <p class="message-time">{{getTimeFromArray(index)}}</p>
                         </div>
 

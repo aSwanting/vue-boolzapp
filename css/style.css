@@ -186,7 +186,8 @@ html {
     z-index: -1;
 }
 
-.message:hover .message-info i {
+.message:hover .message-info i,
+.fa-solid.fa-chevron-down.active {
     opacity: 1;
     transform: translateX(-5px);
 }

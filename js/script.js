@@ -12,7 +12,6 @@ createApp({
             contactSearched: "",
             currentDropdown: 0,
             dropdownOpen: false,
-
             // Bonus Properties
             secretMessage: false,
             circles: [],
@@ -167,12 +166,12 @@ createApp({
             switch (command) {
 
                 case "/commands":
-        
+
                     this.receiveMessage("Type the following commands for bonus features")
                     this.receiveMessage("/circles number")
                     this.receiveMessage("/clearcircles")
                     this.receiveMessage("/rotate number")
-              
+
                     break;
 
                 case "/circles":
