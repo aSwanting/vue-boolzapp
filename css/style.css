@@ -139,6 +139,8 @@ html {
 
 .message-text {
     padding: 10px;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .deleted-message {
