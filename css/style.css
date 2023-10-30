@@ -171,6 +171,7 @@ html {
     transition: 200ms all;
     transform: translateX(5px);
     font-size: 18px;
+    user-select: none;
 }
 
 .message-info i::after {
@@ -442,8 +443,13 @@ html {
         display: none;
     }
 
-    .sidebar-header, .sidebar-contact {
-        padding: 5px;
+    .sidebar-header,
+    .sidebar-contact {
+        padding: 10px;
+    }
+
+    .chat-body {
+        padding: 50px 20px;
     }
 
 }
