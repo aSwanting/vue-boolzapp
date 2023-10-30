@@ -126,7 +126,6 @@ createApp({
             setTimeout(() => this.receiveMessage(), 1000)
         },
 
-
         // Function to receive message response
         receiveMessage(slashCommand) {
 
@@ -198,15 +197,8 @@ createApp({
             // Get messages for current contact
             const messages = this.contacts[index].messages
 
-            // Declare empty array
-            let receivedMessages = []
-
-            // Check each message, if status is "received", push to new array
-            messages.forEach(message => {
-                if (message.status === "received") {
-                    receivedMessages.push(message)
-                }
-            })
+            // Filter messages by status (keep "received")
+            const receivedMessages = messages.filter((message) => message.status === "received")
 
             // Return array of received messages
             return receivedMessages
@@ -225,7 +217,6 @@ createApp({
             return lastMessage
         },
 
-
         // Print the time of last received message for each contact
         printLastMessageTime(index) {
 
@@ -241,7 +232,6 @@ createApp({
             // Return the message time in 24H format
             return time
         },
-
 
         /////////////////////////////////////// BONUS COMMAND SECTION ///////////////////////////////////////
         // This section includes some bonus slash commands added for experimentation
