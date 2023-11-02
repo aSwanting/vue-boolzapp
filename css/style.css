@@ -143,7 +143,7 @@ html {
     overflow-wrap: break-word;
 }
 
-.deleted-message {
+.deleted {
     color: var(--header-icons);
     font-style: italic;
 }
@@ -317,6 +317,24 @@ html {
     gap: 15px;
     border-top: 1px solid var(--bg-gradient-start);
     cursor: pointer;
+    user-select: none;
+    position: relative
+}
+
+.sidebar-contact::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 0;
+    background-color: var(--bg-header);
+    z-index: 9999;
+    position: absolute;
+    left: 0;
+    transition: 200ms all;
+}
+
+.sidebar-contact.active::before {
+    height: 100%;
 }
 
 .sidebar-contact:hover {

@@ -6,11 +6,11 @@ createApp({
     data() {
         return {
             contacts,
-            currentContact: 0,
+            currentContactIndex: 0,
             newMessage: "",
             randomResponses,
             contactSearched: "",
-            currentDropdown: 0,
+            currentDropdownIndex: -1,
             dropdownOpen: false,
 
             // Bonus Properties
@@ -29,17 +29,15 @@ createApp({
             const lowercaseSearch = this.contactSearched.toLowerCase().split(' ').join('')
 
             // Iterate through sidebar contacts
-            if (lowercaseSearch) {
-                this.contacts.forEach(contact => {
+            this.contacts.forEach(contact => {
 
-                    // Convert contact name to lower case, remove spaces
-                    const lowercaseName = contact.name.toLowerCase().split(' ').join('')
+                // Convert contact name to lower case, remove spaces
+                const lowercaseName = contact.name.toLowerCase().split(' ').join('')
 
-                    // Compare searched string to contact name 
-                    lowercaseName.includes(lowercaseSearch) ? contact.visible = true : contact.visible = false
+                // Compare searched string to contact name 
+                lowercaseName.includes(lowercaseSearch) ? contact.visible = true : contact.visible = false
 
-                })
-            }
+            })
         },
     },
 
@@ -48,51 +46,23 @@ createApp({
 
         // Keep track of current contact being displayed
         selectContact(index) {
-            this.currentContact = index
+            this.currentContactIndex = index
         },
 
-        // Toggle dropdown when clicking chevron
-        toggleDropdown(index) {
-
-            // Check if the dropdown is already open elsewhere
-            if (this.dropdownOpen && this.currentDropdown != index) this.hideDropdown()
-
-            // Get current message and toggle dropdown
-            const currentMessage = this.contacts[this.currentContact].messages[index]
-            currentMessage.dropdown = !currentMessage.dropdown
-
-            // Keep track of which dropdown is currently open
-            if (currentMessage.dropdown) {
-                this.dropdownOpen = true
-                this.currentDropdown = index
-            } else {
-                this.dropdownOpen = false
-            }
-
-        },
-
-        // Hide any open dropdown
-        hideDropdown() {
-
-            // Check for open dropdown
-            if (this.dropdownOpen) {
-
-                // Check if current message has an open dropdown, if yes close it
-                const currentMessage = this.contacts[this.currentContact].messages[this.currentDropdown]
-                if (currentMessage.dropdown) currentMessage.dropdown = false
-                this.dropdownOpen = false
-            }
+        // Keep track of current dropdown being opened
+        updateCurrentDropdown(index) {
+            this.currentDropdownIndex = index
         },
 
         // Delete selected message        
         deleteMessage(index) {
 
             // Get currently selected message
-            const currentMessage = this.contacts[this.currentContact].messages[index]
+            const currentMessage = this.contacts[this.currentContactIndex].messages[index]
 
-            // Replace message text, add deleted property to message
+            // Replace message text, add deleted to message status
             currentMessage.message = "Message deleted"
-            currentMessage.deleted = true
+            currentMessage.status += " deleted"
         },
 
         // Check user chat input
@@ -113,7 +83,7 @@ createApp({
         sendMessage() {
 
             // Push user message to object, get current time from date
-            this.contacts[this.currentContact].messages.push({
+            this.contacts[this.currentContactIndex].messages.push({
                 date: (new Date().toLocaleString("en-GB")),
                 message: this.newMessage,
                 status: 'sent'
@@ -145,7 +115,7 @@ createApp({
             }
 
             // Push message to object, get current time from date
-            this.contacts[this.currentContact].messages.push({
+            this.contacts[this.currentContactIndex].messages.push({
                 date: (new Date().toLocaleString("en-GB")),
                 message: response,
                 status: 'received'
@@ -182,7 +152,7 @@ createApp({
         getTimeFromArray(index) {
 
             // Get the converted date 
-            const convertedDate = this.convertDate(this.contacts[this.currentContact].messages[index].date)
+            const convertedDate = this.convertDate(this.contacts[this.currentContactIndex].messages[index].date)
 
             // Extract time from date
             const time = new Date(convertedDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })
@@ -198,7 +168,7 @@ createApp({
             const messages = this.contacts[index].messages
 
             // Filter messages by status (keep "received")
-            const receivedMessages = messages.filter((message) => message.status === "received")
+            const receivedMessages = messages.filter((message) => message.status.includes("received"))
 
             // Return array of received messages
             return receivedMessages

@@ -17,7 +17,7 @@
 
     <div id="app">
 
-        <div class="app-main" @click="hideDropdown()">
+        <div class="app-main" @click="currentDropdownIndex !== -1 ? updateCurrentDropdown(-1) : '' ">
 
             <div class="app-wrapper" ref="app">
 
@@ -25,11 +25,11 @@
 
                 <!-- Chat Header -->
                 <div class="chat-header">
-                    <img class="contact-thumb" :src="contacts[currentContact].avatar"
-                        :alt="contacts[currentContact].name">
+                    <img class="contact-thumb" :src="contacts[currentContactIndex].avatar"
+                        :alt="contacts[currentContactIndex].name">
                     <div class="contact-info">
-                        <p class="username">{{contacts[currentContact].name}}</p>
-                        <p class="last-access">Last seen at {{printLastMessageTime(currentContact)}}</p>
+                        <p class="username">{{contacts[currentContactIndex].name}}</p>
+                        <p class="last-access">Last seen at {{printLastMessageTime(currentContactIndex)}}</p>
                     </div>
                     <div class="header-icons icons">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -42,11 +42,10 @@
                 <div class="chat-body" ref="chatBody">
 
                     <!-- Chat Messages -->
-                    <div class="message"
-                        :class="messages.status, {'deleted-message':contacts[currentContact].messages[index].deleted}"
-                        v-for="(messages, index) in contacts[currentContact].messages">
+                    <div class="message" :class="messages.status"
+                        v-for="(messages, index) in contacts[currentContactIndex].messages">
 
-                        <span class="deleted-icon" v-show="contacts[currentContact].messages[index].deleted">
+                        <span class="deleted-icon" v-show="messages.status.includes('deleted')">
                             <i class="fa-solid fa-ban"></i>
                         </span>
 
@@ -54,12 +53,12 @@
 
                         <div class="message-info">
                             <i class="fa-solid fa-chevron-down"
-                            :class="{active:contacts[currentContact].messages[index].dropdown}"
-                            @click.stop="toggleDropdown(index)"></i>
+                                @click.stop="currentDropdownIndex !== index ? updateCurrentDropdown(index) : updateCurrentDropdown(-1)"
+                                :class="{active:index === currentDropdownIndex}"></i>
                             <p class="message-time">{{getTimeFromArray(index)}}</p>
                         </div>
 
-                        <div class="message-dropdown" v-show="contacts[currentContact].messages[index].dropdown">
+                        <div class="message-dropdown" v-show="index === currentDropdownIndex">
                             <p>Message Info</p>
                             <p @click="deleteMessage(index)">Delete Message</p>
                         </div>
@@ -110,14 +109,19 @@
 
                     <!-- Sidebar Contacts -->
                     <ul class="sidebar-contacts">
-                        <li class="sidebar-contact" v-show="contact.visible" v-for="(contact, index) in contacts"
-                            @click="hideDropdown(), selectContact(index)">
+
+                        <li class="sidebar-contact" :class="{active:currentContactIndex === index}"
+                            v-for="(contact, index) in contacts" @click="selectContact(index)">
+
                             <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
+
                             <div class="sidebar-contact-info">
                                 <p class="sidebar-username">{{contact.name}}</p>
                                 <p class="sidebar-message">{{printLastMessage(index)}}</p>
                             </div>
+
                             <p class="sidebar-message-time">{{printLastMessageTime(index)}}</p>
+
                         </li>
                     </ul>
 
