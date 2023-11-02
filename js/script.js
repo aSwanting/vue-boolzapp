@@ -29,13 +29,33 @@ createApp({
             const lowercaseSearch = this.contactSearched.toLowerCase().split(' ').join('')
 
             // Iterate through sidebar contacts
-            this.contacts.forEach(contact => {
+            this.contacts.forEach((contact, index) => {
 
                 // Convert contact name to lower case, remove spaces
                 const lowercaseName = contact.name.toLowerCase().split(' ').join('')
 
                 // Compare searched string to contact name 
-                lowercaseName.includes(lowercaseSearch) ? contact.visible = true : contact.visible = false
+                if (lowercaseName.includes(lowercaseSearch)) {
+
+                    // Set visible property to true
+                    contact.visible = true
+
+                    // Get index of first matching character
+                    const firstCharIndex = lowercaseName.indexOf(lowercaseSearch)
+                    
+                    // Create string before, including and after found characters
+                    const foundCharsBefore = contact.name.slice(0, firstCharIndex)
+                    const foundChars = contact.name.slice(firstCharIndex, firstCharIndex + lowercaseSearch.length)
+                    const foundCharsAfter = contact.name.slice(firstCharIndex + lowercaseSearch.length)
+
+                    // Style found characters using span with found-characters class
+                    this.$refs.contactName[index].innerHTML = `${foundCharsBefore}<span class="found-characters">${foundChars}</span>${foundCharsAfter}`
+
+                } else {
+
+                    contact.visible = false
+
+                }
 
             })
         },
@@ -72,7 +92,7 @@ createApp({
             if (this.newMessage) {
 
                 // If message begins with "/", treat message as slash command, else send message
-                this.newMessage[0] === "/" ? this.interpretCommand() : this.sendMessage()
+                this.newMessage.startsWith("/") ? this.interpretCommand() : this.sendMessage()
 
                 // Clear input
                 this.newMessage = ""

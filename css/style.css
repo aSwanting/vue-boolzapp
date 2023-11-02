@@ -301,6 +301,11 @@ html {
     border-left: none;
 }
 
+.found-characters {
+    color: var(--bg-header);
+    font-weight: bold;
+}
+
 .contact-thumb {
     max-width: 60px;
     border-radius: 50%;

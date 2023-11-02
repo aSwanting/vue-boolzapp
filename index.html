@@ -111,12 +111,14 @@
                     <ul class="sidebar-contacts">
 
                         <li class="sidebar-contact" :class="{active:currentContactIndex === index}"
-                            v-for="(contact, index) in contacts" @click="selectContact(index)">
+                            v-for="(contact, index) in contacts" @click="selectContact(index)"
+                            v-show="contact.visible">
+                            
 
                             <img class="sidebar-contact-thumb" :src="contact.avatar" :alt="contact.name">
 
                             <div class="sidebar-contact-info">
-                                <p class="sidebar-username">{{contact.name}}</p>
+                                <p class="sidebar-username" ref="contactName">{{contact.name}}</p>
                                 <p class="sidebar-message">{{printLastMessage(index)}}</p>
                             </div>
 
