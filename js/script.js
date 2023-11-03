@@ -22,23 +22,20 @@ createApp({
 
     watch: {
         contactSearched() {
-            // Per posterità
-            // this.contacts.forEach(contact => !(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase())) ? contact.visible = false : contact.visible = true)
 
             // Convert searched string to lowercase, remove spaces
-            let lowercaseSearch = this.contactSearched.toLowerCase().trim()
+            let lowercaseSearch = this.contactSearched.toLowerCase().replaceAll(" ", "")
 
             // Iterate through sidebar contacts
             this.contacts.forEach((contact, index) => {
 
                 // Convert contact name to lower case, remove spaces
-                const lowercaseName = contact.name.toLowerCase().trim()
+                const lowercaseName = contact.name.toLowerCase().replaceAll(" ", "")
 
                 // Compare searched string to contact name 
                 if (lowercaseName.includes(lowercaseSearch)) {
 
-
-                    // Set visible property to true
+                    // Show contact in sidebar
                     contact.visible = true
 
                     // Get start index of matching characters
@@ -47,22 +44,55 @@ createApp({
                     // Get length of matching characters
                     let lastCharIndex = firstCharIndex + lowercaseSearch.length
 
+                    const contactName = contact.name
+                    const contactNameNoSpace = contact.name.replace(' ', '')
+
                     // Create string before, including and after found characters
-                    const foundCharsBefore = contact.name.slice(0, firstCharIndex)
-                    const foundChars = contact.name.slice(firstCharIndex, lastCharIndex)
-                    const foundCharsAfter = contact.name.slice(lastCharIndex)
+                    const foundCharsBefore = contactNameNoSpace.slice(0, firstCharIndex)
+                    const foundChars = contactNameNoSpace.slice(firstCharIndex, lastCharIndex)
+                    const foundCharsAfter = contactNameNoSpace.slice(lastCharIndex)
+                    const foundName = [foundCharsBefore, foundChars, foundCharsAfter]
+
+                    // Find spaces in contact name and add them back into foundName 
+                    for (let i = 0; i < contactName.length; i++) {
+                        if (contactName.charAt(i) === ' ') {
+
+                            const a = foundName[0].length
+                            const b = foundName[1].length
+                            const c = foundName[2].length
+                            let spaceIndex
+
+                            if (i < a) {
+
+                                spaceIndex = i
+                                foundName[0] = foundName[0].slice(0, spaceIndex) + " " + foundName[0].slice(spaceIndex)
+
+                            } else if (i < a + b) {
+
+                                spaceIndex = i - (a + b)
+                                foundName[1] = foundName[1].slice(0, spaceIndex) + " " + foundName[1].slice(spaceIndex)
+
+                            } else if (i < a + b + c) {
+
+                                spaceIndex = i - (a + b + c)
+                                foundName[2] = foundName[2].slice(0, spaceIndex) + " " + foundName[2].slice(spaceIndex)
+
+                            }
+                        }
+                    }
 
                     // Style found characters using span with found-characters class
-                    this.$refs.contactName[index].innerHTML = `${foundCharsBefore}<span class="found-characters">${foundChars}</span>${foundCharsAfter}`
+                    this.$refs.contactName[index].innerHTML = `${foundName[0]}<span class="found-characters">${foundName[1]}</span>${foundName[2]}`
 
                 } else {
 
-                    // Set visible property to true
+                    // Hide contact in sidebar
                     contact.visible = false
 
                 }
 
             })
+
         },
     },
 
