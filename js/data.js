@@ -1,6 +1,6 @@
 const contacts = [
     {
-        name: 'Michele',
+        name: 'Michele Koff',
         avatar: './img/avatar_1.jpg',
         visible: true,
         messages: [

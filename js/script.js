@@ -26,33 +26,38 @@ createApp({
             // this.contacts.forEach(contact => !(contact.name.toLowerCase().includes(this.contactSearched.toLowerCase())) ? contact.visible = false : contact.visible = true)
 
             // Convert searched string to lowercase, remove spaces
-            const lowercaseSearch = this.contactSearched.toLowerCase().split(' ').join('')
+            let lowercaseSearch = this.contactSearched.toLowerCase().trim()
 
             // Iterate through sidebar contacts
             this.contacts.forEach((contact, index) => {
 
                 // Convert contact name to lower case, remove spaces
-                const lowercaseName = contact.name.toLowerCase().split(' ').join('')
+                const lowercaseName = contact.name.toLowerCase().trim()
 
                 // Compare searched string to contact name 
                 if (lowercaseName.includes(lowercaseSearch)) {
 
+
                     // Set visible property to true
                     contact.visible = true
 
-                    // Get index of first matching character
-                    const firstCharIndex = lowercaseName.indexOf(lowercaseSearch)
-                    
+                    // Get start index of matching characters
+                    let firstCharIndex = lowercaseName.indexOf(lowercaseSearch)
+
+                    // Get length of matching characters
+                    let lastCharIndex = firstCharIndex + lowercaseSearch.length
+
                     // Create string before, including and after found characters
                     const foundCharsBefore = contact.name.slice(0, firstCharIndex)
-                    const foundChars = contact.name.slice(firstCharIndex, firstCharIndex + lowercaseSearch.length)
-                    const foundCharsAfter = contact.name.slice(firstCharIndex + lowercaseSearch.length)
+                    const foundChars = contact.name.slice(firstCharIndex, lastCharIndex)
+                    const foundCharsAfter = contact.name.slice(lastCharIndex)
 
                     // Style found characters using span with found-characters class
                     this.$refs.contactName[index].innerHTML = `${foundCharsBefore}<span class="found-characters">${foundChars}</span>${foundCharsAfter}`
 
                 } else {
 
+                    // Set visible property to true
                     contact.visible = false
 
                 }
