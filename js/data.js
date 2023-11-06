@@ -1,6 +1,6 @@
 const contacts = [
     {
-        name: 'Michele Koff',
+        name: 'Michele J Volpe',
         avatar: './img/avatar_1.jpg',
         visible: true,
         messages: [
@@ -184,4 +184,4 @@ const randomResponses = [
     "Thanks for letting me know!",
     "That makes sense young padawan.",
     "(╯°□°）╯︵ ┻━┻"
-  ]
+]

@@ -47,7 +47,7 @@ createApp({
                     let lastCharIndex = firstCharIndex + lowercaseSearch.length
 
                     const contactName = contact.name
-                    const contactNameNoSpace = contact.name.replace(' ', '')
+                    const contactNameNoSpace = contact.name.replaceAll(' ', '')
 
                     // Create string before, including and after found characters
                     const foundCharsBefore = contactNameNoSpace.slice(0, firstCharIndex)
@@ -88,11 +88,14 @@ createApp({
                             // Insert space back into contact name
                             foundName[sliceIndex] = foundName[sliceIndex].slice(0, spaceIndex) + " " + foundName[sliceIndex].slice(spaceIndex)
 
+                            console.log(contactNameNoSpace)
+
+                            // Style found characters using span with found-characters class
+                            this.$refs.contactName[index].innerHTML = `${foundName[0]}<span class="found-characters">${foundName[1]}</span>${foundName[2]}`
+
                         }
                     }
 
-                    // Style found characters using span with found-characters class
-                    this.$refs.contactName[index].innerHTML = `${foundName[0]}<span class="found-characters">${foundName[1]}</span>${foundName[2]}`
 
                     ////////////////////////////////////////// GREEN CHARACTERS END //////////////////////////////////////////
 
