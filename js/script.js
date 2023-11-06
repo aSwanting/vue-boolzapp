@@ -38,6 +38,8 @@ createApp({
                     // Show contact in sidebar
                     contact.visible = true
 
+                    ////////////////////////////////////////// GREEN CHARACTERS START //////////////////////////////////////////
+
                     // Get start index of matching characters
                     let firstCharIndex = lowercaseName.indexOf(lowercaseSearch)
 
@@ -65,21 +67,25 @@ createApp({
 
                             if (i < a) {
 
+                                // Space is in start section
                                 spaceIndex = i
                                 sliceIndex = 0
 
                             } else if (i < a + b) {
 
+                                // Space is in middle section
                                 spaceIndex = i - (a + b)
                                 sliceIndex = 1
 
                             } else if (i < a + b + c) {
 
+                                // Space is in end section
                                 spaceIndex = i - (a + b + c)
                                 sliceIndex = 2
 
                             }
 
+                            // Insert space back into contact name
                             foundName[sliceIndex] = foundName[sliceIndex].slice(0, spaceIndex) + " " + foundName[sliceIndex].slice(spaceIndex)
 
                         }
@@ -87,6 +93,8 @@ createApp({
 
                     // Style found characters using span with found-characters class
                     this.$refs.contactName[index].innerHTML = `${foundName[0]}<span class="found-characters">${foundName[1]}</span>${foundName[2]}`
+
+                    ////////////////////////////////////////// GREEN CHARACTERS END //////////////////////////////////////////
 
                 } else {
 
