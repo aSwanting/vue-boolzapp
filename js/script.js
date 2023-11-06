@@ -61,23 +61,27 @@ createApp({
                             const b = foundName[1].length
                             const c = foundName[2].length
                             let spaceIndex
+                            let sliceIndex
 
                             if (i < a) {
 
                                 spaceIndex = i
-                                foundName[0] = foundName[0].slice(0, spaceIndex) + " " + foundName[0].slice(spaceIndex)
+                                sliceIndex = 0
 
                             } else if (i < a + b) {
 
                                 spaceIndex = i - (a + b)
-                                foundName[1] = foundName[1].slice(0, spaceIndex) + " " + foundName[1].slice(spaceIndex)
+                                sliceIndex = 1
 
                             } else if (i < a + b + c) {
 
                                 spaceIndex = i - (a + b + c)
-                                foundName[2] = foundName[2].slice(0, spaceIndex) + " " + foundName[2].slice(spaceIndex)
+                                sliceIndex = 2
 
                             }
+
+                            foundName[sliceIndex] = foundName[sliceIndex].slice(0, spaceIndex) + " " + foundName[sliceIndex].slice(spaceIndex)
+
                         }
                     }
 
