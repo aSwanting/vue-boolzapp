@@ -88,12 +88,11 @@ createApp({
                             // Insert space back into contact name
                             foundName[sliceIndex] = foundName[sliceIndex].slice(0, spaceIndex) + " " + foundName[sliceIndex].slice(spaceIndex)
 
-                            // Style found characters using span with found-characters class
-                            this.$refs.contactName[index].innerHTML = `${foundName[0]}<span class="found-characters">${foundName[1]}</span>${foundName[2]}`
-
                         }
                     }
 
+                    // Style found characters using span with found-characters class
+                    this.$refs.contactName[index].innerHTML = `${foundName[0]}<span class="found-characters">${foundName[1]}</span>${foundName[2]}`
 
                     ////////////////////////////////////////// GREEN CHARACTERS END //////////////////////////////////////////
 
